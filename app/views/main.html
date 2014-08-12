@@ -18,8 +18,9 @@
   <div class="row">
     <h4>What do you want in {{city}}?</h4>
     <div class='col-md-4' ng-repeat="idea in foodideas">
-      <img class='img-responsive' src="images/{{idea.img}}" alt='test_img'>
+      <img class='img-responsive' src="{{idea.img}}" alt='test_img'>
       <span>{{idea.details.description}}</span>
+      <div ng-click='getFoodIdea(idea.details.tag_id)'>Feed me!</div>
     </div>
   </div>
 </div>
