@@ -16,20 +16,15 @@
 
 <div class='container-fluid'>
   <div class="row">
-    <h4>What do you want?</h4>
-    <div class='col-md-4'>
-      <img class='img-responsive' src='images/testimg.jpg' alt='test_img'>
-    </div>
-    <div class='col-md-4'>
-      <img class='img-responsive' src='images/testimg.jpg' alt='test_img'>
-    </div>
-    <div class='col-md-4'>
-      <img class='img-responsive' src='images/testimg.jpg' alt='test_img'>
+    <h4>What do you want in {{city}}?</h4>
+    <div class='col-md-4' ng-repeat="idea in foodideas">
+      <img class='img-responsive' src="images/{{idea.img}}" alt='test_img'>
+      <span>{{idea.details.description}}</span>
     </div>
   </div>
 </div>
 
-<button type='button' class='btn btn-warning'>These suck. Give me something else.</button>
+<button type='button' class='btn btn-warning' ng-click='getNewIdeas()'>These suck. Give me something else.</button>
 
 <div class="footer">
   <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
