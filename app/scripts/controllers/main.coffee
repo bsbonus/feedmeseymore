@@ -1,6 +1,6 @@
 'use strict'
 
-@feedmeseymoreApp.controller 'MainCtrl', ['$scope', '$location', '$http', ($scope, $location, $http, $log ) ->
+@feedmeseymoreApp.controller 'MainCtrl', ['$scope', '$location', '$http', '$state', ($scope, $location, $http, $state ) ->
   $scope.city = 'Austin'
   $scope.foodideas = [
     {img: 'images/testimg1.jpg',
@@ -33,12 +33,14 @@
       thumbUrl = data.titleImage.url.replace(/dg14fekn8y2fu/, 'd2inek5pdajgud')
       $scope.foodideas[0]['img'] = "#{thumbUrl}&api_key=#{api_key}"
       $scope.foodideas[0]['details']['description'] = data.title
+      $scope.foodideas[0]['details']['tag_id'] = data._id
 
     tag_url = "https://api.tmade.co/v1/tags/#{ideas[1]}?&api_key=webdevtest"
     $http.get(tag_url).success (data) ->
       thumbUrl = data.titleImage.url.replace(/dg14fekn8y2fu/, 'd2inek5pdajgud')
       $scope.foodideas[1]['img'] = "#{thumbUrl}&api_key=#{api_key}"
       $scope.foodideas[1]['details']['description'] = data.title
+      $scope.foodideas[1]['details']['tag_id'] = data._id
 
     tag_url = "https://api.tmade.co/v1/tags/#{ideas[2]}?&api_key=webdevtest"
     $http.get(tag_url).success (data) ->
@@ -46,9 +48,11 @@
       thumbUrl = data.titleImage.url.replace(/dg14fekn8y2fu/, 'd2inek5pdajgud')
       $scope.foodideas[2]['img'] = "#{thumbUrl}&api_key=#{api_key}"
       $scope.foodideas[2]['details']['description'] = data.title
+      $scope.foodideas[2]['details']['tag_id'] = data._id
 
 
   $scope.getFoodIdea = (tagId) ->
-    console.log(tagId)
+    #$state.go('chomps')
+    $location.path "/chomps"
 ]
 
