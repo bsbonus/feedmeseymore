@@ -1,6 +1,6 @@
 'use strict'
 
-@feedmeseymoreApp = angular.module('feedmeseymoreApp', ['ngCookies', 'ngResource', 'ngSanitize', 'ui.router', 'com.2fdevs.videogular'])
+@feedmeseymoreApp = angular.module('feedmeseymoreApp', ['ngCookies', 'ngResource', 'ngSanitize', 'ui.router', 'com.2fdevs.videogular', 'google-maps'])
 
 @feedmeseymoreApp.config( ['$stateProvider', '$urlRouterProvider', '$locationProvider', ($stateProvider, $urlRouterProvider, $locationProvider) ->
   $locationProvider.html5Mode true
