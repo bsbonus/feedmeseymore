@@ -1,9 +1,8 @@
 'use strict'
 
-angular.module('feedmeseymoreApp')
-  .controller 'MainCtrl', ($scope) ->
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate'
-      'AngularJS'
-      'Karma'
-    ]
+@feedmeseymoreApp.controller 'MainCtrl', ['$scope', '$location', '$http', ($scope, $location, $http, $log ) ->
+  $scope.city = 'Austin'
+
+  $scope.getNew
+]
+
