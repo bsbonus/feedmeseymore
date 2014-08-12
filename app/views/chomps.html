@@ -1,8 +1,30 @@
-<div class='container' ui-view>
+<div class='container-fluid' ui-view>
   <div class="jumbotron">
     <h1>Taste of <span>{{city}}</span></h1>
     <p class="lead">
       <img src="images/yeoman.png" alt="I'm Yeoman"><br>
     </p>
   </div>
+
+  <videogular>
+      <video class='videoPlayer' preload='none' controls>
+          <source src="https://d2aiijjnretqc1.cloudfront.net/cv/ez/cvezjiaxqwkpmfhr9ptisq/v1/360-600.mp4?" type="video/mp4">
+      </video>
+  </videogular>
+
+<div class='container-fluid'>
+  <h2>Other Rad Spots To Chomp Down At</h2>
+  <div class="row">
+    <div class='col-md-4'>
+      <img class='img-responsive' ng-src="https://api.tmade.co/v1/videos/cVEZjIAxQwKpMfHR9PtisQ/thumbnail?latestVersion=1" alt="restaurant-img"/>
+    </div>
+    <div class='col-md-4'>
+      <img class='img-responsive' ng-src="https://api.tmade.co/v1/videos/cVEZjIAxQwKpMfHR9PtisQ/thumbnail?latestVersion=1" alt="restaurant-img"/>
+    </div>
+    <div class='col-md-4'>
+      <img class='img-responsive' ng-src="https://api.tmade.co/v1/videos/cVEZjIAxQwKpMfHR9PtisQ/thumbnail?latestVersion=1" alt="restaurant-img"/>
+    </div>
+  </div>
+</div>
+
 </div>
