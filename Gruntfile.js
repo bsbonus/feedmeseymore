@@ -67,9 +67,9 @@ module.exports = function (grunt) {
         // Change this to '0.0.0.0' to access the server from outside.
         middleware: function (connect, options) {
           var optBase = (typeof options.base === 'string') ? [options.base] : options.base;
-          return [require('connect-modrewrite')(['!(\\..+)$ / [L]'])].concat(optBase.map(function(path){ return connect.static(path); }));
+          return [require('connect-modrewrite')(['^[^\\.]*$ /index.html [L]'])].concat(optBase.map(function(path){ return connect.static(path); }));
         },
-        hostname: 'localhost',
+        hostname: '0.0.0.0',
         livereload: 35729
       },
       livereload: {
@@ -143,11 +143,11 @@ module.exports = function (grunt) {
     bowerInstall: {
       app: {
         src: ['<%= yeoman.app %>/index.html'],
-        ignorePath: '<%= yeoman.app %>/'
+        ignorePath: '<%= yeoman.app %>'
       },
       sass: {
         src: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
-        ignorePath: '<%= yeoman.app %>/bower_components/'
+        ignorePath: '<%= yeoman.app %>/bower_components'
       }
     },
 

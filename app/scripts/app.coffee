@@ -6,6 +6,6 @@
   $locationProvider.html5Mode true
   $stateProvider
     .state('landing', {url: '/', templateUrl: "views/main.html", controller: 'MainCtrl' })
-    .state('chomps', {url: '/chomps', templateUrl: 'views/chomps.html', controller: 'FoodCtrl'})
+    .state('chomps', {url: '/chomps/:name', templateUrl: '/views/chomps.html', controller: 'FoodCtrl'})
 ])
 

@@ -1,7 +1,8 @@
 'use strict'
 
-@feedmeseymoreApp.controller 'FoodCtrl', ['$scope', '$location', '$http', ($scope, $location, $http, $log ) ->
+@feedmeseymoreApp.controller 'FoodCtrl', ['$scope', '$location', '$http', '$stateParams', ($scope, $location, $http, $stateParams ) ->
   $scope.city = 'Los Angeles'
+  console.log $stateParams.name
   $scope.map =
     center:
       latitude: 40.1451
