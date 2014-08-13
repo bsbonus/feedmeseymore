@@ -9,22 +9,15 @@
 <div class='container-fluid'>
   <div class="row img-row">
     <div class='col-md-4 img-card food-suggestions' ng-repeat="idea in foodideas">
-      <div>
+      <a ui-sref="chomps({name: idea.details.description})">
         <img class='img-responsive' src="{{idea.img}}" alt='test_img'>
         <div ng-click='getFoodIdea(idea.details.tag_id)' class='overlay'>
           <div>{{idea.details.description}}</div>
         </div>
-      </div>
-    
+      </a>
     </div>
   </div>
 </div>
-
-
-<div>
-  <a ui-sref="chomps({name: 'bacon'})">BACON ME</a>
-</div>
-
 
 <button type='button' class='btn btn-warning v-margin' ng-click='getNewIdeas()'>These suck. Give me something else.</button>
 

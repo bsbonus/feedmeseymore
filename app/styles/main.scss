@@ -33,6 +33,24 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
   }
 }
 
+videogular{
+  display: block;
+  max-width: 640px !important;
+  max-height: 360px !important;
+  video{
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 640px !important;
+    max-height: 360px !important;
+  }
+  img{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+  }
+}
+
 .overlay{
   position: absolute;
   width: 100%;

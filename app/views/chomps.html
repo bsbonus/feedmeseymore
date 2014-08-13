@@ -6,52 +6,62 @@
     </p>
   </div>
 
-  <div class='row'>
-    <div class='col-md-6'>
+  <section ng-show="tagHasVideos">
+    <div class='row'>
+      <div class='col-md-6'>
+        <videogular>
+        <video class='videoPlayer' ng-src="{{trustVideo(activeUrl)}}" type="video/mp4" preload='none' controls poster="{{activeVideo.adjustedThumbUrl}}"></video>
+        </videogular>
+      </div>
+      <div class='col-md-6'>
+        <google-map center="map.center" zoom="map.zoom">
+          <marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id" ></marker>
+        </google-map>
+      </div>
+    </div>
+    <article>
+      <h3>{{activeVideo.venue.name}}</h3>
+      <p>{{activeVideo.venue.address}}</p>
+    </article>
+    <div ng-show='hasMoreVideos'>
+      <h2>What should I eat here?</h2>
       <videogular>
           <video class='videoPlayer' preload='none' controls>
               <source src="https://d2aiijjnretqc1.cloudfront.net/cv/ez/cvezjiaxqwkpmfhr9ptisq/v1/360-600.mp4?" type="video/mp4">
           </video>
       </videogular>
     </div>
-    <div class='col-md-6'>
-      <google-map center="map.center" zoom="map.zoom">
-        <marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id" ></marker>
-      </google-map>
-    </div>
-  </div>
 
-  <article>
-    <h3>{{activeVideo.venue.name}}</h3>
-    <p>{{activeVideo.venue.address}}</p>
-  </article>
-
-  <div ng-show='hasMoreVideos'>
-    <h2>What should I eat here?</h2>
-    <videogular>
-        <video class='videoPlayer' preload='none' controls>
-            <source src="https://d2aiijjnretqc1.cloudfront.net/cv/ez/cvezjiaxqwkpmfhr9ptisq/v1/360-600.mp4?" type="video/mp4">
-        </video>
-    </videogular>
-  </div>
-
-  <div class='container-fluid'>
-    <h2>Other Nearby Spots To Chomp Down At</h2>
-    <div class="row">
-      <div class='col-md-4'>
-        <img class='img-responsive' ng-src="https://api.tmade.co/v1/videos/cVEZjIAxQwKpMfHR9PtisQ/thumbnail?latestVersion=1" alt="restaurant-img"/>
-      </div>
-      <div class='col-md-4'>
-        <img class='img-responsive' ng-src="https://api.tmade.co/v1/videos/cVEZjIAxQwKpMfHR9PtisQ/thumbnail?latestVersion=1" alt="restaurant-img"/>
-      </div>
-      <div class='col-md-4'>
-        <img class='img-responsive' ng-src="https://api.tmade.co/v1/videos/cVEZjIAxQwKpMfHR9PtisQ/thumbnail?latestVersion=1" alt="restaurant-img"/>
+    <h2>Nearby Matches</h2>
+    <div class='container-fluid'>
+      <div class='row'>
+        <div class='col-md-3' ng-repeat="video in matchingVideos">
+          <img class='img-responsive' src="{{video.adjustedThumbUrl}}" alt="{{video.title}}">
+          <div ng-click='setActiveVideo(video._id)' class='overlay'>
+            <div>{{video.title}}</div>
+          </div> 
+        </div>
       </div>
     </div>
-  </div>
 
-  <div>
-    <button>Actually, I want something else</button>
+    <div class='container-fluid'>
+      <h2>Other Nearby Spots To Chomp Down At</h2>
+      <div class="row">
+        <div class='col-md-4'>
+          <img class='img-responsive' ng-src="https://api.tmade.co/v1/videos/cVEZjIAxQwKpMfHR9PtisQ/thumbnail?latestVersion=1" alt="restaurant-img"/>
+        </div>
+        <div class='col-md-4'>
+          <img class='img-responsive' ng-src="https://api.tmade.co/v1/videos/cVEZjIAxQwKpMfHR9PtisQ/thumbnail?latestVersion=1" alt="restaurant-img"/>
+        </div>
+        <div class='col-md-4'>
+          <img class='img-responsive' ng-src="https://api.tmade.co/v1/videos/cVEZjIAxQwKpMfHR9PtisQ/thumbnail?latestVersion=1" alt="restaurant-img"/>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <button>Actually, I want something else</button>
+    </div>
   </div>
 
 </div>
