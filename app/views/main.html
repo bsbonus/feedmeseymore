@@ -1,12 +1,3 @@
-<div class="header">
-  <ul class="nav nav-pills pull-right">
-    <li class="active"><a ng-href="#">Home</a></li>
-    <li><a ng-href="#">About</a></li>
-    <li><a ng-href="#">Contact</a></li>
-  </ul>
-  <h3 class="text-muted">feedmeseymore</h3>
-</div>
-
 <div class="jumbotron">
   <h1>Taste of <span>{{city}}</span></h1>
   <p class="lead">
@@ -14,19 +5,22 @@
   </p>
 </div>
 
+<h4>What do you want in {{city}}?</h4>
 <div class='container-fluid'>
-  <div class="row">
-    <h4>What do you want in {{city}}?</h4>
-    <div class='col-md-4 food-suggestions' ng-repeat="idea in foodideas">
-      <img class='img-responsive' src="{{idea.img}}" alt='test_img'>
-      <div ng-click='getFoodIdea(idea.details.tag_id)' class='overlay'>
-        <span>{{idea.details.description}}</span>
+  <div class="row img-row">
+    <div class='col-md-4 img-card food-suggestions' ng-repeat="idea in foodideas">
+      <div>
+        <img class='img-responsive' src="{{idea.img}}" alt='test_img'>
+        <div ng-click='getFoodIdea(idea.details.tag_id)' class='overlay'>
+          <div>{{idea.details.description}}</div>
+        </div>
       </div>
+    
     </div>
   </div>
 </div>
 
-<button type='button' class='btn btn-warning' ng-click='getNewIdeas()'>These suck. Give me something else.</button>
+<button type='button' class='btn btn-warning v-margin' ng-click='getNewIdeas()'>These suck. Give me something else.</button>
 
 <div class="footer">
   <p><span class="glyphicon glyphicon-heart"></span> from foodies</p>
