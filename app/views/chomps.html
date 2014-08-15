@@ -17,7 +17,7 @@
 
 
   <section ng-show="tagHasVideos">
-    <div class='row'>
+    <div class='row padded'>
       <div class='col-md-6'>
         <videogular>
         <video class='videoPlayer' ng-src="{{trustVideo(activeUrl)}}" type="video/mp4" preload='none' controls poster="{{activeVideo.adjustedThumbUrl}}"></video>
@@ -36,21 +36,23 @@
     </article>
 
     <div ng-show='hasMoreVideos'>
-      <h2>More Videos from {{activeVideo.venue.name}}</h2>
-      <div class='row'>
-        <div class='col-md-3' ng-repeat="video in venueVideos">
-          <div class='overlay-wrapper small'>
-            <img class='img-responsive' src="{{video.thumbnail.url}}" alt="{{video.title}}">
-            <div ng-click='setActiveVideo(video._id)' class='overlay'>
-              <div>{{video.title}}</div>
-            </div> 
+      <h2 class='text-centered'>More Videos from {{activeVideo.venue.name}}</h2>
+      <div class='container-fluid'>
+        <div class='row'>
+          <div class='col-md-3' ng-repeat="video in venueVideos">
+            <div class='overlay-wrapper small'>
+              <img class='img-responsive' src="{{video.thumbnail.url}}" alt="{{video.title}}">
+              <div ng-click='setActiveVideo(video._id)' class='overlay'>
+                <div>{{video.title}}</div>
+              </div> 
+            </div>
           </div>
         </div>
       </div>
     </div>
 
     <div ng-show='nearbyVids'>
-      <h2>Nearby Matches</h2>
+      <h2 class='text-centered'>Nearby Matches</h2>
       <div class='container-fluid'>
         <div class='row'>
           <div class='col-md-3' ng-repeat="video in matchingVideos">
@@ -66,12 +68,12 @@
     </div>
 
     <div class='container-fluid'>
-      <h2>Other Nearby Spots To Chomp Down At</h2>
+      <h2 class='text-centered'>Other Nearby Spots To Chomp Down At</h2>
       <div class="row v-margin" ng-repeat="vidGroup in nearbyVideos">
         <div class='col-xs-6 col-sm-3 col-md-3' ng-repeat='vid in vidGroup'>
           <div class='overlay-wrapper small'>
             <img class='img-responsive' ng-src="{{vid.thumbnail.url}}" alt="restaurant-img"/>
-            <div class='overlay' ng-click='setActiveVideo(vid.video.url)'>
+            <div class='overlay' ng-click='setActiveVideo(vid._id)'>
               <div>{{vid.title}}</div>
             </div>
           </div>
@@ -79,5 +81,4 @@
       </div>
     </div>
   </div>
-
 </div>

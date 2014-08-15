@@ -46,6 +46,9 @@
   $scope.setActiveVideo = (id) ->
     for vid in $scope.matchingVideos
       if vid._id is id
+        unless $scope.activeVideo.venue.name is vid.venue.name
+          $scope.hasMoreVideos = false
+          $scope.venueVideos = []
         $scope.activeVideo = vid
         $scope.activeUrl = vid.video.url
 
@@ -54,7 +57,7 @@
 
   $http.get("https://api.tmade.co/v1/tags/#{$stateParams.name}/videos?api_key=webdevtest").success (data) ->
     for vid in data
-      if vid.venue isnt undefined and vid.venue.geoName is $scope.city
+      if vid.venue isnt undefined and vid.venue.geoName is $scope.city.name
         vid['adjustedThumbUrl'] = vid.thumbnail.url.replace(/dg14fekn8y2fu/, 'd2inek5pdajgud')
         $scope.tagHasVideos = true
         $scope.matchingVideos.push vid
