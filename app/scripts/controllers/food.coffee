@@ -34,7 +34,7 @@
       latitude: 34.111063,
       longitude: -118.27938379999998
     options:
-      draggable: false
+      draggable: true
 
   $scope.setCoords = (position)->
     $scope.coords = position.coords
@@ -51,6 +51,9 @@
           $scope.venueVideos = []
         $scope.activeVideo = vid
         $scope.activeUrl = vid.video.url
+        console.log vid.venue
+        $scope.marker.coords.longitude = vid.venue.coordinate[0]
+        $scope.marker.coords.latitude = vid.venue.coordinate[1]
 
   $scope.trustVideo = (url) ->
     return $sce.trustAsResourceUrl url
