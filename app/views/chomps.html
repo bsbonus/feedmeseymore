@@ -1,14 +1,18 @@
-<div class='container-fluid' ui-view>
-  <div class="jumbotron">
-    <h1>Taste of <span>{{city}}</span></h1>
-    <p class="lead">
-      <img src="/images/yeoman.png" alt="I'm Yeoman"><br>
-    </p>
-  </div>
+<div class="jumbotron {{city.name}}">
+  <h1>Taste of {{city.name}}</h1>
+  <span class="dropdown" on-toggle="toggled(open)">
+    <a href class="dropdown-toggle">Not in {{city.name}}?</a>
+    <ul class="dropdown-menu">
+      <li ng-repeat="city in cityCoords">
+        <a href ng-click="changeCity(city.name)">{{city.name}}</a>
+      </li>
+    </ul>
+  </span>
+</div>
 
   <section ng-show="!tagHasVideos">
-    <h2>{{city}} doesn't have {{tagName}} joints!</h2>
-    <a ng-href='https://www.tastemade.com/'>Why not add some?</a>
+    <h2 class='text-centered'>{{city.name}} doesn't have {{tagName}} joints!</h2>
+    <a class='text-centered' ng-href='https://www.tastemade.com/'>Why not add some?</a>
   </section>
 
 
@@ -35,41 +39,44 @@
       <h2>More Videos from {{activeVideo.venue.name}}</h2>
       <div class='row'>
         <div class='col-md-3' ng-repeat="video in venueVideos">
-          <img class='img-responsive' src="{{video.thumbnail.url}}" alt="{{video.title}}">
-          <div ng-click='setActiveVideo(video._id)' class='overlay'>
-            <div>{{video.title}}</div>
-          </div> 
+          <div class='overlay-wrapper small'>
+            <img class='img-responsive' src="{{video.thumbnail.url}}" alt="{{video.title}}">
+            <div ng-click='setActiveVideo(video._id)' class='overlay'>
+              <div>{{video.title}}</div>
+            </div> 
+          </div>
         </div>
       </div>
     </div>
 
-    <h2>Nearby Matches</h2>
-    <div class='container-fluid'>
-      <div class='row'>
-        <div class='col-md-3' ng-repeat="video in matchingVideos">
-          <img class='img-responsive' src="{{video.adjustedThumbUrl}}" alt="{{video.title}}">
-          <div ng-click='setActiveVideo(video._id)' class='overlay'>
-            <div>{{video.title}}</div>
-          </div> 
+    <div ng-show='nearbyVids'>
+      <h2>Nearby Matches</h2>
+      <div class='container-fluid'>
+        <div class='row'>
+          <div class='col-md-3' ng-repeat="video in matchingVideos">
+            <div class='overlay-wrapper small'>
+              <img class='img-responsive' src="{{video.adjustedThumbUrl}}" alt="{{video.title}}">
+              <div ng-click='setActiveVideo(video._id)' class='overlay'>
+                <div>{{video.title}}</div>
+              </div> 
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
     <div class='container-fluid'>
       <h2>Other Nearby Spots To Chomp Down At</h2>
-      <div class="row" ng-repeat="vidGroup in nearbyVideos">
+      <div class="row v-margin" ng-repeat="vidGroup in nearbyVideos">
         <div class='col-xs-6 col-sm-3 col-md-3' ng-repeat='vid in vidGroup'>
-          <img class='img-responsive' ng-src="{{vid.thumbnail.url}}" alt="restaurant-img"/>
-          <div class='overlay'>
-            <div>{{vid.title}}</div>
+          <div class='overlay-wrapper small'>
+            <img class='img-responsive' ng-src="{{vid.thumbnail.url}}" alt="restaurant-img"/>
+            <div class='overlay' ng-click='setActiveVideo(vid.video.url)'>
+              <div>{{vid.title}}</div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-
-
-    <div>
-      <button>Actually, I want something else</button>
     </div>
   </div>
 

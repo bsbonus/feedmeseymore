@@ -1,7 +1,8 @@
 'use strict'
 
-@feedmeseymoreApp.controller 'FoodCtrl', ['$scope', '$location', '$http', '$stateParams', '$sce', ($scope, $location, $http, $stateParams, $sce ) ->
-  $scope.city = 'Los Angeles, CA'
+@feedmeseymoreApp.controller 'FoodCtrl', ['$scope', '$location', '$http', '$stateParams', '$sce', 'NearbyVids', '$filter', ($scope, $location, $http, $stateParams, $sce, NearbyVids, $filter ) ->
+  $scope.city =
+    name: 'Los Angeles, CA'
   $scope.tagHasVideos = false
   $scope.tagName = $stateParams.name
   $scope.matchingVideos = []
@@ -10,19 +11,28 @@
   $scope.hasMoreVideos = false
   $scope.nearbyVideos = [[]]
   $scope.venueVideos = []
+
+  NearbyVids.getNearbyVideos(34.1111623, -118.2793132)
+    .success (data) ->
+      for vid in data
+        $scope.matchingVideos.push vid
+      $scope.nearbyVideos = $filter('groupBy')(data)
+    .error (err, result) ->
+      $scope.nearbyVids = false
+
   $scope.coords =
     lat: 34.111063
     long: -118.27938379999998
   $scope.map =
       center:
-        latitude: 40.1451
-        longitude: -99.6680
-      zoom: 8
+        latitude: $scope.coords.lat
+        longitude: $scope.coords.long
+      zoom: 12
   $scope.marker =
     id: 0,
     coords:
-      latitude: 40.1451,
-      longitude: -99.6680
+      latitude: 34.111063,
+      longitude: -118.27938379999998
     options:
       draggable: false
 
@@ -48,9 +58,9 @@
         vid['adjustedThumbUrl'] = vid.thumbnail.url.replace(/dg14fekn8y2fu/, 'd2inek5pdajgud')
         $scope.tagHasVideos = true
         $scope.matchingVideos.push vid
+
     if $scope.matchingVideos.length > 0
       $scope.activeVideo = $scope.matchingVideos[0]
-      console.log $scope.activeVideo
       $scope.activeUrl = $scope.activeVideo.video.url
       $http.get("#{$scope.activeVideo.venue._videosUrl}?api_key=webdevtest")
         .success (data, status) ->
@@ -58,26 +68,12 @@
             $scope.hasMoreVideos = true
             for vid in data
               $scope.venueVideos.push vid
-            console.log $scope.venueVideos
+              $scope.matchingVideos.push vid
           else
             $scope.hasMoreVideos = false
         .error (data, status) ->
           $scope.hasMoreVideos = false
-
     $scope.getLocation()
-
-
-  $http.get("https://api.tmade.co/v1/nearby/videos?lat=#{$scope.coords.lat}&long=#{$scope.coords.long}&api_key=webdevtest")
-    .success (data, status) ->
-      count = 0
-      for vid, index in data
-        if count <= 3
-          if index % 5 is 0 and index != 0
-            count += 1
-            $scope.nearbyVideos[count] = []
-            $scope.nearbyVideos[count][index % 5 - 1] = vid
-          else if index % 5 isnt 0
-            $scope.nearbyVideos[count][index % 5 - 1] = vid
 ]
 
 

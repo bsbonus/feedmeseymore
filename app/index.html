@@ -14,6 +14,7 @@
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
+    <link href='http://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/styles/main.css">
     <!-- endbuild -->
   </head>
@@ -23,7 +24,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container-fluid" ui-view=""></div>
+    <div class="container-fluid root" ui-view=""></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -61,6 +62,7 @@
     <script src="/bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="/bower_components/angular-route/angular-route.js"></script>
+    <script src="/bower_components/angular-bootstrap/ui-bootstrap.js"></script>
     <!-- endbower -->
     <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="/bower_components/videogular/videogular.js"></script>
@@ -68,12 +70,15 @@
     <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
     <script src='/bower_components/lodash/dist/lodash.js'></script>
     <script src='/bower_components/angular-google-maps/dist/angular-google-maps.js'></script>
+    <script src='/bower_components/angular-reverse-geocode/angular-reverse-geocode.js'></script>
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="/scripts/app.js"></script>
         <script src="/scripts/controllers/main.js"></script>
         <script src="/scripts/controllers/food.js"></script>
+        <script src="/scripts/services/nearbyvids.js"></script>
+        <script src="/scripts/filters/groupby.js"></script>
         <!-- endbuild -->
 </body>
 </html>
