@@ -11,7 +11,7 @@
     url = "https://api.tmade.co/v1/tags/#{name}?&api_key=webdevtest&callback=JSON_CALLBACK"
     $http.jsonp(url).success (data) ->
       thumbUrl = data.titleImage.url.replace(/dg14fekn8y2fu/, 'd2inek5pdajgud')
-      title = data.title
+      title = data.slug
       tag_id = data._id
       info = {
         img: "/images/testimg#{i}.jpg",
@@ -20,6 +20,14 @@
           tag_id: tag_id
       }
       $scope.foodideas.push info
+
+  $scope.setCoords = (position)->
+    $scope.coords = position.coords
+
+  $scope.getLocation = ->
+    if navigator.geolocation
+      navigator.geolocation.getCurrentPosition($scope.setCoords)
+
 
 
   $scope.getRandomIdea = ->
@@ -41,5 +49,6 @@
     $location.path "/chomps"
 
   $scope.getNewIdeas()
+  $scope.getLocation()
 ]
 
