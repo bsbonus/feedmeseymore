@@ -24,9 +24,16 @@ h1, h2, h3{
   font-family: 'Oswald', sans-serif;
 }
 
+article{
+  padding-left: 30px;
+}
 
 .angular-google-map-container{
-  height: 400px;
+  height: 360px;
+}
+
+.img-responsive, .overlay{
+  @include border-radius(5px);
 }
 
 .v-margin{
@@ -49,6 +56,10 @@ h1, h2, h3{
   margin-left: auto;
   margin-right: auto;
   text-align: center;
+}
+
+.padded{
+  padding: 30px;
 }
 
 .overlay-wrapper{
